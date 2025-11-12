@@ -56,6 +56,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Script id="gtm-datalayer" strategy="beforeInteractive">
           {`window.dataLayer = window.dataLayer || [];`}
         </Script>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-HKT5CJD2BV"
+        ></Script>
+        <Script id={"ga4-script"} strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-HKT5CJD2BV');`}
+        </Script>
+        <Script></Script>
         <Script id="gtm" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
