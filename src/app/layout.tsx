@@ -53,17 +53,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="kr">
       <head>
-        {/*<Script*/}
-        {/*  async*/}
-        {/*  src="https://www.googletagmanager.com/gtag/js?id=G-K8RLJQGN45"*/}
-        {/*></Script>*/}
-        {/*<Script id="google-analytics">*/}
-        {/*  {`*/}
-        {/*  window.dataLayer = window.dataLayer || [];*/}
-        {/*  function gtag(){dataLayer.push(arguments);}*/}
-        {/*  gtag('js', new Date());*/}
-        {/*  gtag('config', 'G-K8RLJQGN45');`}*/}
-        {/*</Script>*/}
+        <Script id="gtm-datalayer" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];`}
+        </Script>
+        <Script id="gtm" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-KKV73M88');
+          `}
+        </Script>
         <meta
           name="naver-site-verification"
           content="9f574bbc7e2631f63d9c1c587bc0353578a32637"
@@ -71,6 +72,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <title>제주특별자치도농구협회</title>
       </head>
       <body className={inter.className}>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KKV73M88"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
         <div className={"min-h-[100vh]"}>
           <ReactQueryProviders>
             <AuthProvider>
